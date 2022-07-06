@@ -1,5 +1,5 @@
-import 'package:bmi/helpers/bmi_calculator.dart';
 import 'package:bmi/constants/constant.dart';
+import 'package:bmi/helpers/bmi_calculator.dart';
 import 'package:bmi/views/bmi_data_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +79,7 @@ class BmiResultScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: primaryColor,
                 ),
               ),
             ),
@@ -98,7 +98,7 @@ class BmiResultScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: primaryColor,
                       ),
                     ),
                     Text(
@@ -106,7 +106,7 @@ class BmiResultScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 100,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: primaryColor,
                       ),
                     ),
                     Text(
@@ -114,7 +114,7 @@ class BmiResultScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 15,
-                        color: Colors.white,
+                        color: primaryColor,
                       ),
                     ),
                   ],
@@ -128,7 +128,7 @@ class BmiResultScreen extends StatelessWidget {
             },
             child: Container(
               height: 80,
-              color: const Color(0xffEC3C66),
+              color: const Color(0xff517DF6),
               child: const Center(
                 child: Text(
                   "Hitung Ulang",
