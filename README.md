@@ -1,2 +1,2 @@
 # bmi
- batch2
+Latihan Flutter batch2
