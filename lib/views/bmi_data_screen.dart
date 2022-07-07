@@ -245,7 +245,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                                     onSelectedItemChanged: (val) {
                                       weight = val + 20;
                                     },
-                                    children: generateList(20, 220)),
+                                    children: generateList(0, 220)),
                               ),
                             ],
                           ),
