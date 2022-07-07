@@ -33,7 +33,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
       weights.add(
         Text(
           "$i",
-          style: labelTextStyle!.copyWith(
+          style: labelTextStyle.copyWith(
             fontSize: 20,
           ),
         ),
@@ -49,6 +49,8 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
       appBar: AppBar(
         elevation: 0,
         title: const Text("BMI Calculator"),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
       ),
       bottomNavigationBar: GestureDetector(
         onTap: () {
@@ -68,14 +70,14 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
         },
         child: Container(
           height: 60,
-          margin: EdgeInsets.all(15),
+          margin: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: const Color(0xff517DF6),
           ),
           child: const Center(
             child: Text(
-              "Hitung BMI",
+              "Calculate BMI",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -86,9 +88,21 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
+            const SizedBox(height: 30),
+            Column(
+              children: [
+                Text(
+                  "Gender",
+                  style: labelTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
             Row(
               children: [
                 Expanded(
@@ -98,15 +112,16 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                       setState(() {});
                     },
                     child: BmiCard(
-                      borderColor:
-                          (gender == "male") ? Color(0xff517DF6) : Colors.white,
+                      borderColor: (gender == "male")
+                          ? const Color(0xff517DF6)
+                          : Colors.blue,
                       child: Stack(
                         children: [
                           const Center(
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.0),
                               child: GenderIconText(
-                                icon: Icons.male,
+                                icon: Icons.boy,
                                 title: "Male",
                               ),
                             ),
@@ -117,7 +132,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                             child: Icon(
                               Icons.check_circle,
                               color: (gender == "male")
-                                  ? Color(0xff517DF6)
+                                  ? const Color(0xff517DF6)
                                   : Colors.white,
                             ),
                           )
@@ -134,15 +149,15 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                     },
                     child: BmiCard(
                       borderColor: (gender == "female")
-                          ? Color(0xff517DF6)
-                          : Colors.white,
+                          ? const Color(0xff517DF6)
+                          : Colors.blue,
                       child: Stack(
                         children: [
                           const Center(
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.0),
                               child: GenderIconText(
-                                icon: Icons.female,
+                                icon: Icons.girl,
                                 title: "Female",
                               ),
                             ),
@@ -153,7 +168,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                             child: Icon(
                               Icons.check_circle,
                               color: (gender == "female")
-                                  ? Color(0xff517DF6)
+                                  ? const Color(0xff517DF6)
                                   : Colors.white,
                             ),
                           )
@@ -183,7 +198,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                           min: 80,
                           max: 200,
                           thumbColor: Colors.red,
-                          activeColor: Colors.white,
+                          activeColor: Colors.blue,
                           onChanged: (value) {
                             height = value.toInt();
                             setState(() {});
@@ -217,76 +232,70 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                 ),
               ],
             ),
-            Container(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "WEIGHT",
-                          style: labelTextStyle,
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "WEIGHT",
+                        style: labelTextStyle,
+                      ),
+                      BmiCard(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.15,
+                              child: CupertinoPicker(
+                                  scrollController: FixedExtentScrollController(
+                                      initialItem: 30),
+                                  itemExtent: 25,
+                                  magnification: 2,
+                                  useMagnifier: true,
+                                  onSelectedItemChanged: (val) {
+                                    weight = val + 20;
+                                  },
+                                  children: generateList(0, 220)),
+                            ),
+                          ],
                         ),
-                        BmiCard(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.15,
-                                child: CupertinoPicker(
-                                    scrollController:
-                                        FixedExtentScrollController(
-                                            initialItem: 30),
-                                    itemExtent: 25,
-                                    magnification: 2,
-                                    useMagnifier: true,
-                                    onSelectedItemChanged: (val) {
-                                      weight = val + 20;
-                                    },
-                                    children: generateList(0, 220)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Text(
-                          "AGE",
-                          style: labelTextStyle,
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        "AGE",
+                        style: labelTextStyle,
+                      ),
+                      BmiCard(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.15,
+                              child: CupertinoPicker(
+                                  scrollController: FixedExtentScrollController(
+                                      initialItem: 5),
+                                  itemExtent: 25,
+                                  magnification: 2,
+                                  useMagnifier: true,
+                                  onSelectedItemChanged: (val) {
+                                    weight = val + 20;
+                                  },
+                                  children: generateList(15, 90)),
+                            ),
+                          ],
                         ),
-                        BmiCard(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.15,
-                                child: CupertinoPicker(
-                                    scrollController:
-                                        FixedExtentScrollController(
-                                            initialItem: 5),
-                                    itemExtent: 25,
-                                    magnification: 2,
-                                    useMagnifier: true,
-                                    onSelectedItemChanged: (val) {
-                                      weight = val + 20;
-                                    },
-                                    children: generateList(15, 90)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
@@ -299,7 +308,7 @@ class BmiCard extends StatelessWidget {
   const BmiCard({
     Key? key,
     this.child,
-    this.borderColor = Colors.white,
+    this.borderColor = Colors.blue,
   }) : super(key: key);
 
   final Widget? child;
@@ -312,9 +321,9 @@ class BmiCard extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-                offset: Offset(-2, 2),
-                blurRadius: 10,
-                color: Colors.black.withOpacity(0.1))
+                offset: const Offset(-4, 4),
+                blurRadius: 20,
+                color: Colors.black.withOpacity(0.2))
           ],
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: borderColor!),
