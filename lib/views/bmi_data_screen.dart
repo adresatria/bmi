@@ -95,7 +95,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
             Column(
               children: [
                 Text(
-                  "Gender",
+                  "Select Gender",
                   style: labelTextStyle.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -247,7 +247,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
+                              height: MediaQuery.of(context).size.height * 0.30,
                               child: CupertinoPicker(
                                   scrollController: FixedExtentScrollController(
                                       initialItem: 30),
@@ -277,7 +277,7 @@ class _BmiDataScreenState extends State<BmiDataScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
+                              height: MediaQuery.of(context).size.height * 0.30,
                               child: CupertinoPicker(
                                   scrollController: FixedExtentScrollController(
                                       initialItem: 5),
